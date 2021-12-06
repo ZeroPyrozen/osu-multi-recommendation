@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "osu! Multi-Recommendation";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<style>
+    #formMultiplayer{
+        margin: 0 20% 0 20%;
+    }
+    .container{
+        margin-top:25vh;
+    }
+    .title{
+        margin-bottom:50px;
+    }
+</style>
+<div class="text-center text-white">
+    <p class="display-4 title">osu! Multi-Recommendation</p>
+    <form id="formMultiplayer">
+        <p class="lead">
+            Get most popular map from osu! multiplayer match
+        </p>
+        <div class="form-group">
+            <input type="text" class="form-control" id="txtMultiplayerID" aria-describedby="multiplayerID" placeholder="Enter Multiplayer ID (e.g. https://osu.ppy.sh/community/matches/94798555 or 94798555)">
+        </div>
+        <a id="btnSearch" class="btn btn-info btn-lg btn-block">Search Popular Map</a>
+    </form>
+</div>
+<script type="text/javascript">
+    $('#btnSearch').click(function () {
+        $.ajax(
+            {
+                type: "GET",
+                url: '@Url.Action("Search","Home")', // Controller/View
+                data: { //Passing data
+                    multiplayerID: $("#txtMultiplayerID").val()
+                },
+                success: function (response) {
+                    window.location.href = response.redirectToUrl;
+                }
+            });
+    });
+</script>

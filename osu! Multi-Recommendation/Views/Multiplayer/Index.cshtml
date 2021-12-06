@@ -1,0 +1,41 @@
+﻿@model osu__Multi_Recommendation.Models.MultiplayerResultViewModel
+@{
+    ViewData["Title"] = "osu! Multi-Recommendation Result";
+}
+
+<h1 class="text-white display-4 h-100" style="margin-bottom:10%;margin-top:15%;">Search Result: @Model.matchTitle</h1>
+@{ 
+    int rowNum = 1;
+}
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th style="width:5%">
+                Rank
+            </th>
+            <th>
+                Beatmap Title
+            </th>
+            <th>
+                Play Count
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.multiplayers)
+        {
+            <tr>
+                <td style="text-align:center">
+                    @rowNum
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlayCount)
+                </td>
+            </tr>
+            rowNum++;
+        }
+    </tbody>
+</table>
