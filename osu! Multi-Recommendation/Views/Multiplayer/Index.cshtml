@@ -3,10 +3,13 @@
     ViewData["Title"] = "osu! Multi-Recommendation Result";
 }
 
-<h1 class="text-white display-4 h-100" style="margin-bottom:10%;margin-top:15%;">Search Result: @Model.matchTitle</h1>
+<h1 class="text-white h-100">Top 10 Most Played Beatmap in</h1>
+<h1 style="margin-bottom: 50px;" class="text-white display-5 h-100">@Model.matchTitle</h1>
 @{ 
     int rowNum = 1;
 }
+
+<h2 class="text-white">Match Count: @Model.matchCount</h2>
 <table class="table table-dark table-hover">
     <thead>
         <tr>
@@ -14,7 +17,13 @@
                 Rank
             </th>
             <th>
-                Beatmap Title
+                Beatmap
+            </th>
+            <th>
+                Beatmapset Host
+            </th>
+            <th>
+                Difficulty Name
             </th>
             <th>
                 Play Count
@@ -24,17 +33,23 @@
     <tbody>
         @foreach (var item in Model.multiplayers)
         {
-            <tr>
-                <td style="text-align:center">
-                    @rowNum
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PlayCount)
-                </td>
-            </tr>
+        <tr>
+            <td style="text-align:center">
+                @rowNum
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeatmapView)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeatmapsetHost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Version)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayCount)
+            </td>
+        </tr>
             rowNum++;
         }
     </tbody>

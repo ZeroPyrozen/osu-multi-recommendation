@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpOsu.Module;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,5 +14,7 @@ namespace osu__Multi_Recommendation.Models
         }
         public string matchTitle { get; set; }
         public List<MultiplayerModel> multiplayers { get; set; }
+        public List<OsuUser> players { get; set; }
+        public int matchCount { get; set; }
     }
 }
